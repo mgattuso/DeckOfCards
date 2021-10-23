@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div id="cards" class="row">
+    
+</div>
+
+@section Scripts
+{
+    
+    <script>
+        $(function() {
+            $.get("/api/cards",
+                function (data) {
+                    $.each(data, function (idx, item) {
+                        console.log(item);
+                        $("#cards").append('<div class="col-2 mb-4"><img style="width: 100%" src="/images/cards/' + item.name + '_of_' + item.suit + '.png" alt="' + item.name + ' of ' + item.suit + '" /></div>');
+                    });
+                });
+        });
+    </script>
+
+}
